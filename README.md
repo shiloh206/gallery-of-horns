@@ -1,3 +1,43 @@
+Number and name of feature: Display Images 
+
+Estimate of time needed to complete: 1hr
+
+Start time: 9:10pm 
+
+Finish time: 9:30pm
+
+Actual time needed to complete: 20
+
+Number and name of feature: Allow users to favorite Indivisual Beasts
+
+Estimate of time needed to complete: 1hr
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Number and name of feature: Allow users to Favorite Individual Beasts
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
