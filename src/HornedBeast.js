@@ -1,35 +1,50 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-class HornedBeast extends React.Component{
-  constructor(props){
+
+class HornedBeast extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-      likes: 0
-    };
+      favorites: 0
+    }
   }
-  handleLikes = () => {
+  handleFavorites = () => {
     //when the user clocks on "🖤" updates value of this.state.likes 
     this.setState({
-      likes: this.state.likes + 1,
+      favorites: this.state.favorites + 1,
     });
 
   }
-  render(){
-    return(
-      <article className="hornedBeast"> 
-        {this.props._id}
-        <h2>{this.props.title}
-        </h2>
-        <p>{this.props.description} 
-        </p>
-        <p>{this.state.waves}likes</p>
-        <p onClick={this.handleLikes}>🖤</p>
-        Horns{this.props.horns}
-        <img alt = {this.props.alt} src =
-        {this.props.image_url}/>
-      </article>
-    )
+  render() {
+    return (
+      <Card className="hornedBeast">
+        <Card.Img
+          variant="top"
+          src={this.props.image_url}
+          alt={this.props._id}
+          onClick={this.handleFavorites}
+        />
+        <Card.Body>
+          <Card.Title>{this.props.title}</Card.Title>
+          <Card.Text>{this.props.description}</Card.Text>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+
+          </div>
+          <p> ❤  {this.state.favorites}</p>
+          <Button variant="primary" onClick={this.handleFavorites}>FAVORITE: ❤️ </Button>
+        </Card.Body>
+      </Card>
+    );
   }
 }
 
+
+
+
 export default HornedBeast; 
+
+
+
+// style={{ margin: "0 auto", width: "%", height: "100%" }}
