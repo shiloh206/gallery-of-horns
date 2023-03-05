@@ -16,6 +16,8 @@ class Main extends React.Component{
         description = {horned.description}
         keyword = {horned.keyword}
         horns = {horned.horns}
+        addHearts={this.props.addHearts}
+        handleOpenModal={this.props.handleOpenModal}
         key={index}
          />
       )
