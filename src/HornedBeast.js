@@ -1,71 +1,46 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import SelectedBeast from "./SelectedBeast";
+import Card from "react-bootstrap/Card";
 
-
-
-class HornedBeast extends React.Component {
-  constructor(props) {
-    super(props);
+class HornedBeast extends React.Component{
+  
+  constructor(props){
+    super(props)
     this.state = {
-      favorites: 0
-    }
+      desc: props.desc,
+      clicked: 0,
+    };
   }
-  handleFavorites = () => {
-    //when the user clocks on "🖤" updates value of this.state.likes 
+
+  handleFavorites = () =>{
     this.setState({
-      favorites: this.state.favorites + 1,
+      clicked: this.state.clicked + 1,
+      desc: this.props.desc + "❤️: " + (this.state.clicked+1),
     });
-
+    console.log(this.props.id);
+    this.props.startDisp(this.props.id);
   }
-  // handleNameClick = () =>{
-  //   this.props.handleOpenModal,
-  //   this.props.title,
-  //   this.props.description,
-  //   this.props.image_url
 
-
-  // }
-  render() {
+  render(){
     return (
-      <Card className="hornedBeast" >
-        <Card.Img
-          variant="top"
-          src={this.props.image_url}
-          alt={this.props.title}
-          // onClick={this.handleFavorites}
-          onClick={this.props.addHearts}
-        />
-        <Card.Body>
-          <Card.Title>{this.props.title}</Card.Title>
-          <Card.Text>{this.props.description}</Card.Text>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-
-          </div>
-          <p> ❤  {this.state.favorites}</p>
-          <Button variant="primary" onClick={this.handleFavorites}>FAVORITE: ❤️ </Button>
-         
-          <SelectedBeast
-            src={this.state.Src}
-            alt={this.state.Alt}
-            title={this.state.Title}
-            description={this.state.Description}
-            liked={this.state.liked}
-            handleClick={this.handleClick}
+      <>
+        <Card style={{ width: "18rem" }} className="m-1 d-inline-block">
+          <Card.Img
+            variant="top"
+            src={this.props.src}
+            className="h-50"
+            onClick={this.handleFavorites}
           />
-
-        </Card.Body>
-      </Card>
+          <Card.Body>
+            <Card.Title>{this.props.title}</Card.Title>
+            <Card.Text>{this.state.desc}</Card.Text>
+          </Card.Body>
+        </Card>
+      </>
     );
   }
 }
 
-
-
-export default HornedBeast; 
-
-
+export default HornedBeast;
 
 
 
