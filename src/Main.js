@@ -1,33 +1,27 @@
 import React from 'react';
-import HornedBeast from './HornedBeast.js';
-import './Main.css';
+import HornedBeast from './HornedBeast';
+
 
 class Main extends React.Component{
-
-  render() {
-    let beast = [];
-    console.log(this.props.data)
-    this.props.data.forEach((horned, index)=> {
-      beast.push(
-        <HornedBeast
-        title = {horned.title}
-        image_url = {horned.image_url}
-        _id = {horned._id}
-        description = {horned.description}
-        keyword = {horned.keyword}
-        horns = {horned.horns}
-        addHearts={this.props.addHearts}
-        handleOpenModal={this.props.handleOpenModal}
-        key={index}
-         />
-      )
-
-    })
+  render(){
     return (
-      <main>
-        {beast}
-      </main>
-    )
+      <>
+        {this.props.data.map(obj => {
+          return (
+            <HornedBeast
+              startDisp={this.props.startDisp}
+              src={obj.image_url}
+              title={obj.title}
+              desc={obj.description}
+              keyword={obj.keyword}
+              horns={obj.horns}
+              key={obj._id}
+              id={obj._id}
+              />
+          );
+        })}
+      </>
+    );
   }
 }
 

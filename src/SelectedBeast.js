@@ -1,63 +1,29 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
-class SelectedBeast extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false,
-    };
+class HornsSelector extends React.Component{
+ 
+  handleChange = (e) => {
+    e.preventDefault();
+    this.props.selectByHorns(e.target.value);
   }
-
-  handleClose = () => {
-    this.setState({
-      show: false,
-    });
-  };
-
-  handleShow = () => {
-    this.setState({
-      show: true,
-    });
-  };
-
-  render() {
+ 
+  render(){
     return (
       <>
-        <Button variant="primary" onClick={this.handleShow}>
-          See Selected Beast
-        </Button>
-
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{this.props.title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              style={{ width: "100%" }}
-              src={this.props.src}
-              alt={this.props.alt}
-              onClick={this.props.handleClick}
-            />
-            <p style={{ textAlign: "center" }}>{this.props.description}</p>
-            <p> ❤ : {this.props.favorite}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={this.handleClose}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <Form.Group className="mb-3">
+          <Form.Label>Number of Horns:</Form.Label>
+          <Form.Select onChange={this.handleChange}>
+            <option value="">Horns</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="100">Lots!</option>
+          </Form.Select>
+        </Form.Group>
       </>
     );
   }
-}
-export default SelectedBeast;
+};
+
+export default HornsSelector;

@@ -1,66 +1,63 @@
+//import
 import React from 'react';
-import Main from './Main';
-import Header from './Header';
-import HornedBeast from './HornedBeast';
-import Footer from './Footer';
-import Modal from 'react-bootstrap/Modal'
-import data from './data.json'
 import './App.css';
-class App extends React.Component {
+import data from "./data.json";
+import Header from './Header';
+import Footer from './Footer';
+import Main from './Main';
+import BeastDisp from './Modal';
+import SelectedBeast from './SelectedBeast';
+import { Container } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
 
+//extend
+class App extends React.Component {
+ 
   constructor(props){
-    super(props);
-    this.state = {
-      hearts: '',
-      showModal: true,
-      personName: ''
+    super(props)
+    this.state={
+      modalDisp: false,
+      beastToDisp: {},
+      beastsByHorns: data,
     }
   }
+ 
+  stopModal = () => this.setState({modalDisp: false});
 
-  addHearts = () => {
-    this.setState({
-      hearts: this.state.hearts + '💙'
-    });
-  }
-  handleOpenModal=(name, description, image_url) => {
-    this.setState({
-      showModal: true,
-      personName: name
-    });
+  startModal = (key) => {
+    let selectedBeast = data.filter(beast => beast._id === key);
+    this.setState({beastToDisp: selectedBeast[0]});
+    this.setState({modalDisp: true});
   }
 
-  handleCloseModal=() => {
-    this.setState({
-      showModal: false
-    });
+  selectByHorns = (horns) => {
+    let selectByHorn
+    if (horns){
+      selectByHorn = data.filter(beast => beast.horns === Number(horns));
+    } else {
+      selectByHorn = data;
+    }
 
-}
+    this.setState({beastsByHorns: selectByHorn});
+  }
 
-  
   render(){
-    
-    return(
-      <>
-          <Header hearts ={this.state.hearts}/>
-          <p onClick={this.handleOpenModal}>testing</p>
-          <Main data = {data} 
-          addHearts = {this.addHearts}
-          handleOpenModal = {this.handleOpenModal}
-          />
-          <HornedBeast/>
-          <Modal
-          show={this.state.showModal} 
-          onHide={this.handleCloseModal}>
-            <Modal.Header>
-              <Modal.Title>{this.state.personName}</Modal.Title>
-            </Modal.Header>
 
-          </Modal>
-          <Footer/>
-         </>
+    //inside of this return is all JSX
+    // javascript that looks like html
+    return (
+      <Container>
+        < Header />
+        < SelectedBeast selectByHorns={this.selectByHorns}/>
+        < Main data={this.state.beastsByHorns} startModal={this.startModal}/>
+        < BeastDisp modalDisp={this.state.modalDisp} beastToDisp={this.state.beastToDisp} stopModal={this.stopModal}/>
+        < Footer />
+      </Container>
     );
   }
+
+
 }
 
-export default App; 
-
+//export
+export default App;
